@@ -18,7 +18,10 @@ LOCAL_PATH := $(call my-dir)
 #########################
 
 WIFI_DRIVER_SOCKET_IFACE := wlan0
-ifeq ($(strip $(WPA_SUPPLICANT_VERSION)),VER_0_8_X)
-  include external/wpa_supplicant_8/wpa_supplicant/wpa_supplicant_conf.mk
-endif
+# IchthysOS/AOSP-17: this AOSP legacy WLAN tree is unused (we use hardware/qcom-caf/wlan,
+# which provides wpa_supplicant.conf via soong). The legacy wpa_supplicant_conf.mk include
+# now hard-errors under AOSP-17 (converted to soong), so it is disabled here.
+#ifeq ($(strip $(WPA_SUPPLICANT_VERSION)),VER_0_8_X)
+#  include external/wpa_supplicant_8/wpa_supplicant/wpa_supplicant_conf.mk
+#endif
 #######################

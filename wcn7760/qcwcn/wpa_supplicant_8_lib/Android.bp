@@ -37,7 +37,7 @@ license {
 }
 
 cc_library_static {
-    name: "lib_driver_cmd_qcwcn",
+    name: "lib_driver_cmd_qcwcn_pixel_wcn7760",
     shared_libs: [
         "libc",
         "libcutils",
