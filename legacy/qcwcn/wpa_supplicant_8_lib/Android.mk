@@ -15,6 +15,12 @@
 #
 LOCAL_PATH := $(call my-dir)
 
+# IchthysOS: the a52sxq/sm7325 build uses the qcom-caf soong WLAN tree, whose
+# //hardware/qcom-caf/wlan/qcwcn:lib_driver_cmd_qcwcn is wired into wpa_supplicant via
+# soong_config (see device/samsung/sm7325-common/common.mk). This legacy make copy defines
+# the same module name and collides ("lib_driver_cmd_qcwcn already defined"), so it is kept
+# disabled. Set ICHTHYS_USE_LEGACY_QCWCN_WPA_LIB=true to fall back to this make-based copy.
+ifeq (true,$(ICHTHYS_USE_LEGACY_QCWCN_WPA_LIB))
 ifeq ($(WPA_SUPPLICANT_VERSION),VER_0_8_X)
 
 ifneq ($(BOARD_WPA_SUPPLICANT_DRIVER),)
@@ -70,4 +76,5 @@ include $(BUILD_STATIC_LIBRARY)
 
 ########################
 
-endif
+endif # WPA_SUPPLICANT_VERSION == VER_0_8_X
+endif # ICHTHYS_USE_LEGACY_QCWCN_WPA_LIB
